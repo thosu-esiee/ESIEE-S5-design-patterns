@@ -50,7 +50,7 @@ public class UberClient {
                 .lastname("Constant")
                 .email("theo.constant@edu.esiee.fr")
                 .grade(2)
-                .grade(5)
+                .grades(List.of(1, 3, 4, 5))
                 .build();
     }
 

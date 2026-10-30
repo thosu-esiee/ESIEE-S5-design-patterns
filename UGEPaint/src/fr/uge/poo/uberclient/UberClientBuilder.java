@@ -2,6 +2,7 @@ package fr.uge.poo.uberclient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class UberClientBuilder {
@@ -68,6 +69,7 @@ public class UberClientBuilder {
     }
 
     public UberClientBuilder grades(List<Integer> grades) {
+        Objects.requireNonNull(grades);
         this.grades.addAll(grades);
         return this;
     }
