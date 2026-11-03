@@ -52,21 +52,29 @@ public class Newsletter {
         }
     }
 
-    private void notifySuscribeFail(User user) {
+    private void notifySuscribeFailAlreadyExists(User user) {
         for (var observer : observers) {
-            observer.onSuscribeFail(this, user);
+            observer.onSuscribeFailAlreadyExists(this, user);
+        }
+    }
+
+    private void notifySuscribeFailInvalid(User user) {
+        for (var observer : observers) {
+            observer.onSuscribeFailInvalid(this, user);
         }
     }
 
     public void suscribe(User user) {
         Objects.requireNonNull(user);
-        // TODO: if already exists, go to else
         if (validator.isValid(user)) {
-            suscribers.putIfAbsent(user.email(), user);
-            notifySuscribeSuccess(user);
+            var v = suscribers.putIfAbsent(user.email(), user);
+            if (v == null) {
+                notifySuscribeFailAlreadyExists(user);
+            } else {
+                notifySuscribeSuccess(user);
+            }
         } else {
-//            System.err.println("[" + name + "] could not register user " + user.name() + "<" + user.email() + ">");
-            notifySuscribeFail(user);
+            notifySuscribeFailInvalid(user);
         }
     }
 

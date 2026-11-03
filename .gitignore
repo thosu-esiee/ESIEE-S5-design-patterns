@@ -1,3 +1,4 @@
 *.tar.gz
 out/
 .idea/
+ESIEE-S5-design-patterns.iml
