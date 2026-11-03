@@ -1,6 +1,5 @@
 package fr.uge.poo.newsletter.question4;
 
-import com.evilcorp.eemailer.EEMailer;
 import fr.uge.poo.newsletter.User;
 
 import java.util.HashMap;
@@ -28,6 +27,10 @@ public class Newsletter {
         this.name = name;
         this.mailer = mailer;
         this.validator = validator;
+    }
+
+    public String name() {
+        return name;
     }
 
     public void suscribe(User user) {
